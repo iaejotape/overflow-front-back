@@ -53,6 +53,7 @@
           <label class="form-label">Categoria</label>
           <div class="chips-container">
             <button
+              type="button"
               *ngFor="let cat of categorias"
               class="chip"
               [class.active]="categoriaSelecionada === cat.value"
@@ -68,6 +69,7 @@
           <label class="form-label">Nível de Dificuldade</label>
           <div class="difficulty-chips">
             <button
+              type="button"
               class="difficulty-chip facil"
               [class.active]="dificuldadeSelecionada === 'facil'"
               (click)="selecionarDificuldade('facil')"
@@ -76,6 +78,7 @@
               Fácil
             </button>
             <button
+              type="button"
               class="difficulty-chip medio"
               [class.active]="dificuldadeSelecionada === 'medio'"
               (click)="selecionarDificuldade('medio')"
@@ -84,6 +87,7 @@
               Médio
             </button>
             <button
+              type="button"
               class="difficulty-chip dificil"
               [class.active]="dificuldadeSelecionada === 'dificil'"
               (click)="selecionarDificuldade('dificil')"

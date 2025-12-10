@@ -109,13 +109,14 @@ export class AdicionarQuestaoPage implements OnInit {
         ? this.pontuacao
         : 10;
 
-    const payload: CriarQuestaoDTO = {
+    const payload: any = {
       titulo: this.titulo,
       enunciado: this.enunciado,
       categoria: this.categoriaSelecionada as any,
       nivel: this.dificuldadeSelecionada as any,
       pontuacao: pontuacaoValida,
       resultado_esperado: this.resultadoEsperado,
+      linguagem: 'python', // valor padrão enquanto a API ainda exige
     };
 
     this.carregando = true;
@@ -143,7 +144,8 @@ export class AdicionarQuestaoPage implements OnInit {
         error: (err) => {
           console.error('Erro ao criar questão', err);
           this.carregando = false;
-          alert('Erro ao criar questão.');
+          const mensagemErro = err.error ? JSON.stringify(err.error) : 'Erro desconhecido';
+          alert('Erro ao criar questão: ' + mensagemErro);
         },
       });
     }
