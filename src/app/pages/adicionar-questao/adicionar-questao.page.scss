@@ -1,0 +1,430 @@
+// Variáveis de cores
+$color-primary-dark: #0a0e27;
+$color-card-bg: #111631;
+$color-purple: #6a3cff;
+$color-purple-light: #8b5cf6;
+$color-green: #24c97b;
+$color-text-primary: #ffffff;
+$color-text-secondary: rgba(255, 255, 255, 0.6);
+$color-border: rgba(255, 255, 255, 0.1);
+
+.adicionar-questao-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $color-primary-dark 0%, darken($color-primary-dark, 3%) 100%);
+}
+
+// ============ HEADER ============
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba($color-card-bg, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $color-text-primary;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin: 0;
+  }
+
+  .header-spacer {
+    width: 40px;
+  }
+}
+
+// ============ FORM CONTENT ============
+.form-content {
+  padding: 24px 20px 40px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text-primary;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba($color-card-bg, 0.8);
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  font-size: 15px;
+  color: $color-text-primary;
+  outline: none;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+
+  &:focus {
+    border-color: $color-purple;
+    box-shadow: 0 0 0 3px rgba($color-purple, 0.2);
+  }
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba($color-card-bg, 0.8);
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  font-size: 15px;
+  color: $color-text-primary;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+
+  &:focus {
+    border-color: $color-purple;
+    box-shadow: 0 0 0 3px rgba($color-purple, 0.2);
+  }
+
+  &.code-textarea {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.form-hint {
+  display: block;
+  font-size: 12px;
+  color: $color-text-secondary;
+  margin-top: 6px;
+}
+
+// ============ SELECT ============
+.select-wrapper {
+  position: relative;
+
+  .form-select {
+    width: 100%;
+    padding: 14px 44px 14px 16px;
+    background: rgba($color-card-bg, 0.8);
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    font-size: 15px;
+    color: $color-text-primary;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.2s ease;
+
+    option {
+      background: $color-card-bg;
+      color: $color-text-primary;
+    }
+
+    &:focus {
+      border-color: $color-purple;
+      box-shadow: 0 0 0 3px rgba($color-purple, 0.2);
+    }
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: $color-text-secondary;
+    pointer-events: none;
+  }
+}
+
+// ============ CHIPS ============
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .chip {
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid $color-border;
+    background: rgba($color-card-bg, 0.6);
+    color: $color-text-secondary;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active,
+    &:hover {
+      background: linear-gradient(135deg, $color-purple 0%, $color-purple-light 100%);
+      border-color: $color-purple;
+      color: $color-text-primary;
+    }
+  }
+}
+
+// ============ DIFFICULTY CHIPS ============
+.difficulty-chips {
+  display: flex;
+  gap: 10px;
+
+  .difficulty-chip {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 12px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    &.facil {
+      background: $color-green;
+
+      &.active {
+        border-color: $color-purple;
+        box-shadow: 0 0 0 2px rgba($color-purple, 0.4);
+      }
+    }
+
+    &.medio {
+      background: #f59e0b;
+
+      &.active {
+        border-color: $color-purple;
+        box-shadow: 0 0 0 2px rgba($color-purple, 0.4);
+      }
+    }
+
+    &.dificil {
+      background: #ef4444;
+
+      &.active {
+        border-color: $color-purple;
+        box-shadow: 0 0 0 2px rgba($color-purple, 0.4);
+      }
+    }
+  }
+}
+
+// ============ XP INPUT ============
+.xp-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .xp-input {
+    padding-right: 50px;
+  }
+
+  .xp-suffix {
+    position: absolute;
+    right: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-green;
+  }
+}
+
+// ============ TEST CASES ============
+.test-case {
+  background: rgba($color-card-bg, 0.6);
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+
+  .test-case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .test-case-number {
+      font-size: 13px;
+      font-weight: 600;
+      color: $color-purple-light;
+    }
+
+    .remove-test-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(#ef4444, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      svg {
+        width: 14px;
+        height: 14px;
+        color: #f87171;
+      }
+
+      &:hover {
+        background: rgba(#ef4444, 0.3);
+      }
+    }
+  }
+
+  .test-case-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    .test-input,
+    .test-output {
+      label {
+        display: block;
+        font-size: 11px;
+        color: $color-text-secondary;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid $color-border;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: 'Fira Code', 'Consolas', monospace;
+        color: $color-text-primary;
+        outline: none;
+        transition: all 0.2s ease;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3);
+        }
+
+        &:focus {
+          border-color: $color-purple;
+        }
+      }
+    }
+  }
+}
+
+.add-test-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px dashed $color-border;
+  background: transparent;
+  color: $color-text-secondary;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    border-color: $color-purple;
+    color: $color-purple-light;
+    background: rgba($color-purple, 0.1);
+  }
+}
+
+// ============ SUBMIT BUTTON ============
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, $color-green 0%, darken($color-green, 10%) 100%);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 32px;
+  box-shadow: 0 8px 24px rgba($color-green, 0.3);
+  transition: all 0.3s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba($color-green, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

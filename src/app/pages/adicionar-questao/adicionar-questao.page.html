@@ -1,0 +1,142 @@
+<ion-content [fullscreen]="true" [scrollY]="true">
+  <div class="adicionar-questao-container">
+
+    <!-- header -->
+    <header class="page-header">
+      <button class="back-btn" (click)="voltar()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </button>
+      <h1 class="header-title">
+        {{ editMode ? 'Editar Questão' : 'Nova Questão' }}
+      </h1>
+      <div class="header-spacer"></div>
+    </header>
+
+    <main class="form-content">
+
+      <!-- se quiser, pode mostrar um loading simples -->
+      <div *ngIf="carregando">
+        <p>Carregando...</p>
+      </div>
+
+      <div *ngIf="!carregando">
+
+        <!-- Título -->
+        <div class="form-group">
+          <label class="form-label">Título da Questão</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Ex: Área do Círculo"
+            [(ngModel)]="titulo"
+            name="titulo"
+          >
+        </div>
+
+        <!-- Enunciado -->
+        <div class="form-group">
+          <label class="form-label">Enunciado</label>
+          <textarea
+            class="form-textarea"
+            rows="4"
+            placeholder="Descreva o problema detalhadamente..."
+            [(ngModel)]="enunciado"
+            name="enunciado"
+          ></textarea>
+        </div>
+
+        <!-- Categoria -->
+        <div class="form-group">
+          <label class="form-label">Categoria</label>
+          <div class="chips-container">
+            <button
+              *ngFor="let cat of categorias"
+              class="chip"
+              [class.active]="categoriaSelecionada === cat.value"
+              (click)="selecionarCategoria(cat.value)"
+            >
+              {{ cat.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Dificuldade -->
+        <div class="form-group">
+          <label class="form-label">Nível de Dificuldade</label>
+          <div class="difficulty-chips">
+            <button
+              class="difficulty-chip facil"
+              [class.active]="dificuldadeSelecionada === 'facil'"
+              (click)="selecionarDificuldade('facil')"
+            >
+              <span class="dot"></span>
+              Fácil
+            </button>
+            <button
+              class="difficulty-chip medio"
+              [class.active]="dificuldadeSelecionada === 'medio'"
+              (click)="selecionarDificuldade('medio')"
+            >
+              <span class="dot"></span>
+              Médio
+            </button>
+            <button
+              class="difficulty-chip dificil"
+              [class.active]="dificuldadeSelecionada === 'dificil'"
+              (click)="selecionarDificuldade('dificil')"
+            >
+              <span class="dot"></span>
+              Difícil
+            </button>
+          </div>
+        </div>
+
+        <!-- Pontuação -->
+        <div class="form-group">
+          <label class="form-label">Pontuação (XP)</label>
+          <div class="xp-input-wrapper">
+            <input
+              type="number"
+              class="form-input xp-input"
+              placeholder="10"
+              min="1"
+              max="100"
+              [(ngModel)]="pontuacao"
+              name="pontuacao"
+            >
+            <span class="xp-suffix">Pts</span>
+          </div>
+          <span class="form-hint">Entre 1 e 100 pontos</span>
+        </div>
+
+        <!-- Resultado Esperado -->
+        <div class="form-group">
+          <label class="form-label">Resultado Esperado</label>
+          <textarea
+            class="form-textarea code-textarea"
+            rows="3"
+            placeholder="Ex: 3.14159..."
+            [(ngModel)]="resultadoEsperado"
+            name="resultadoEsperado"
+          ></textarea>
+          <span class="form-hint">O que o código deve retornar como saída</span>
+        </div>
+
+        <!-- Botão -->
+        <button class="submit-btn" (click)="adicionarOuSalvarQuestao()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13"/>
+            <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+          {{ editMode ? 'Salvar alterações' : 'Adicionar Questão' }}
+        </button>
+
+      </div>
+
+    </main>
+
+  </div>
+</ion-content>

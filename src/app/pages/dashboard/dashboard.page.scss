@@ -1,0 +1,661 @@
+// Variáveis
+$color-primary-dark: #0a0e27;
+$color-purple: #6a3cff;
+$color-purple-light: #8b5cf6;
+$color-green: #24c97b;
+$color-white: #ffffff;
+$color-gray: #6b7280;
+$color-card-bg: #111631;
+
+:host {
+  --ion-background-color: #{$color-primary-dark};
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  background: $color-primary-dark;
+  padding-bottom: 80px;
+}
+
+// Header
+.dashboard-header {
+  display: flex;
+  justify-content: center;
+  padding: 16px 20px;
+  
+  .header-logo {
+    height: 32px;
+    width: auto;
+  }
+}
+
+// Conteúdo Principal
+.dashboard-content {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Seção do Usuário - Avatar + Info lado a lado
+.user-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+  
+  .avatar-side {
+    position: relative;
+    flex-shrink: 0;
+    
+    .avatar-owl {
+      .owl-img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+    }
+    
+    .cais-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      width: 30px;
+      height: 30px;
+      background: $color-white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      
+      .cais-img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+    }
+  }
+  
+  .info-side {
+    flex: 1;
+    min-width: 0;
+    
+    .greeting-text {
+      font-size: 18px;
+      font-weight: 500;
+      color: $color-white;
+      margin: 0 0 12px 0;
+      line-height: 1.3;
+      
+      .user-name {
+        color: $color-green;
+        font-weight: 700;
+      }
+      
+      .emoji {
+        color: $color-white;
+      }
+    }
+    
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      
+      .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        flex-wrap: wrap;
+        
+        svg {
+          width: 12px;
+          height: 12px;
+          color: $color-gray;
+          flex-shrink: 0;
+        }
+        
+        .label {
+          color: $color-gray;
+          white-space: nowrap;
+        }
+        
+        .value {
+          color: $color-purple-light;
+          font-weight: 600;
+        }
+        
+        .lang-img {
+          height: 16px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+// Cards Row - Lado a lado
+.cards-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+// Info Card
+.info-card {
+  flex: 1;
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 16px;
+  
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    margin: 0 0 16px 0;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $color-gray;
+    }
+    
+    .code-symbol {
+      font-family: monospace;
+      font-size: 14px;
+      color: $color-gray;
+    }
+  }
+  
+  .card-items {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    
+    .item-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba($color-purple, 0.3), rgba($color-purple, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba($color-purple, 0.4);
+      
+      .item-img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+      }
+      
+      &.locked {
+        opacity: 0.4;
+        filter: grayscale(100%);
+      }
+      
+      &.insignia {
+        background: linear-gradient(145deg, rgba($color-white, 0.1), rgba($color-white, 0.05));
+        border-color: rgba($color-white, 0.2);
+      }
+      
+      &.inactive {
+        opacity: 0.4;
+        filter: grayscale(100%);
+      }
+    }
+  }
+}
+
+// Progress Card
+.progress-card {
+  width: 100%;
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 16px;
+  overflow: hidden;
+  
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    margin: 0 0 12px 0;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $color-gray;
+    }
+  }
+
+  // Container com scroll horizontal
+  .progress-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    
+    // Ocultar scrollbar mas manter funcionalidade
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .progress-months {
+    display: flex;
+    margin-bottom: 4px;
+    margin-left: 14px;
+    font-size: 10px;
+    color: $color-gray;
+    min-width: max-content;
+
+    span {
+      flex: 1;
+      min-width: 50px;
+      text-align: left;
+    }
+  }
+  
+  .progress-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: max-content;
+    
+    .grid-row {
+      display: flex;
+      align-items: center;
+
+      .day-label {
+        width: 12px;
+        font-size: 9px;
+        color: $color-gray;
+        flex-shrink: 0;
+      }
+      
+      .grid-cells {
+        display: flex;
+        gap: 3px;
+
+        .grid-cell {
+          width: 10px;
+          height: 10px;
+          border-radius: 2px;
+          background: rgba($color-purple, 0.25);
+          flex-shrink: 0;
+          
+          &.low {
+            background: rgba($color-purple, 0.45);
+          }
+
+          &.medium {
+            background: rgba($color-purple, 0.7);
+          }
+          
+          &.active {
+            background: $color-purple;
+          }
+        }
+      }
+    }
+  }
+
+  .progress-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+
+    .legend-label {
+      font-size: 9px;
+      color: $color-gray;
+    }
+
+    .legend-scale {
+      display: flex;
+      gap: 2px;
+
+      .legend-cell {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background: rgba($color-purple, 0.25);
+
+        &.low {
+          background: rgba($color-purple, 0.45);
+        }
+
+        &.medium {
+          background: rgba($color-purple, 0.7);
+        }
+
+        &.active {
+          background: $color-purple;
+        }
+      }
+    }
+  }
+}
+
+// Widget Cards (Anúncios, Discord, Spotify)
+.widget-card {
+  width: 100%;
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 16px;
+  
+  .widget-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+}
+
+// Anúncios Card
+.anuncios-card {
+  .anuncio-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    color: $color-gray;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+    
+    p {
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+}
+
+// Discord Card
+.discord-card {
+  background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+  
+  .discord-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    
+    .discord-logo {
+      width: 28px;
+      height: 28px;
+      color: $color-white;
+    }
+    
+    .discord-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: $color-white;
+      flex: 1;
+    }
+    
+    .discord-members {
+      text-align: right;
+      
+      .members-count {
+        display: block;
+        font-size: 18px;
+        font-weight: 700;
+        color: #43B581;
+      }
+      
+      .members-label {
+        font-size: 10px;
+        color: rgba($color-white, 0.7);
+      }
+    }
+  }
+  
+  .discord-content {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    
+    h4 {
+      font-size: 12px;
+      font-weight: 600;
+      color: $color-white;
+      margin: 0 0 10px 0;
+    }
+    
+    .member-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+      
+      .member-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        
+        .member-status {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          
+          &.online {
+            background: #43B581;
+          }
+          
+          &.idle {
+            background: #FAA61A;
+          }
+          
+          &.dnd {
+            background: #F04747;
+          }
+        }
+        
+        .member-name {
+          flex: 1;
+          color: $color-white;
+        }
+        
+        .member-game {
+          color: rgba($color-white, 0.5);
+          font-size: 10px;
+        }
+      }
+    }
+    
+    .discord-btn {
+      width: 100%;
+      padding: 10px;
+      background: #43B581;
+      border: none;
+      border-radius: 8px;
+      color: $color-white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      
+      &:active {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+// Spotify Card
+.spotify-card {
+  background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+  
+  .spotify-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    
+    .spotify-logo {
+      width: 24px;
+      height: 24px;
+      color: #1DB954;
+    }
+    
+    .spotify-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: $color-white;
+    }
+  }
+  
+  .spotify-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .album-cover {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      
+      .album-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #E91E8C, #9B4DCA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        svg {
+          width: 48px;
+          height: 48px;
+          color: $color-white;
+        }
+      }
+    }
+    
+    .song-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-white;
+      margin: 0 0 16px 0;
+      text-align: center;
+    }
+    
+    .spotify-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      
+      .control-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        svg {
+          width: 20px;
+          height: 20px;
+          color: $color-white;
+        }
+        
+        &.play-btn {
+          width: 48px;
+          height: 48px;
+          background: #1DB954;
+          
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+        
+        &:active {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+// Footer
+.dashboard-footer {
+  text-align: center;
+  padding: 24px 16px;
+  
+  p {
+    font-size: 12px;
+    color: $color-gray;
+    margin: 0;
+  }
+}
+
+// Bottom Navigation
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(60px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: $color-primary-dark;
+  border-top: 1px solid rgba($color-purple, 0.15);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 1000;
+  
+  .nav-item {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 22px;
+      height: 22px;
+      color: $color-gray;
+      transition: color 0.2s ease;
+    }
+    
+    &.active {
+      svg {
+        color: $color-purple-light;
+        fill: $color-purple-light;
+      }
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

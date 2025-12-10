@@ -1,0 +1,397 @@
+// Variáveis
+$color-primary-dark: #0a0e27;
+$color-purple: #6a3cff;
+$color-green: #24c97b;
+$color-white: #ffffff;
+$color-gray: #8e8ea0;
+$color-card-bg: #111631;
+$color-input-bg: #1a1f3d;
+$color-border: #2a2f4d;
+
+:host {
+  --ion-background-color: #{$color-primary-dark};
+}
+
+// Container Principal
+.perfil-container {
+  min-height: 100vh;
+  background: $color-primary-dark;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+// Mensagens de Feedback
+.mensagem-feedback {
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+
+  &.sucesso {
+    background: rgba($color-green, 0.15);
+    color: $color-green;
+    border: 1px solid rgba($color-green, 0.3);
+  }
+
+  &.erro {
+    background: rgba(#dc3545, 0.15);
+    color: #dc3545;
+    border: 1px solid rgba(#dc3545, 0.3);
+  }
+}
+
+// Layout Principal - Coluna única no mobile
+.perfil-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ============================================
+// CARD AVATAR (Coluna Esquerda)
+// ============================================
+.card-avatar {
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $color-border;
+}
+
+.avatar-wrapper {
+  margin-bottom: 16px;
+
+  .avatar-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+}
+
+.user-stats {
+  width: 100%;
+  background: $color-input-bg;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid $color-border;
+
+  .stat-item {
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      display: block;
+      color: $color-gray;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      display: block;
+      color: $color-white;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+// ============================================
+// CARD FORMULÁRIO (Coluna Direita)
+// ============================================
+.card-form {
+  flex: 1;
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid $color-border;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  color: $color-white;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.form-label-center {
+  display: block;
+  color: $color-white;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: $color-input-bg;
+  border-radius: 25px;
+  border: 1px solid $color-border;
+  overflow: hidden;
+
+  &.active {
+    border-color: $color-green;
+  }
+
+  .form-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    color: $color-white;
+    font-size: 0.95rem;
+    outline: none;
+
+    &:read-only {
+      opacity: 0.8;
+    }
+  }
+
+  .btn-edit {
+    background: transparent;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: $color-gray;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      color: $color-green;
+    }
+  }
+}
+
+// Radio Group (Sexo)
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .radio-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid $color-gray;
+    position: relative;
+    transition: border-color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $color-green;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  input[type="radio"]:checked + .radio-circle {
+    border-color: $color-green;
+
+    &::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .radio-symbol {
+    font-size: 1rem;
+    color: $color-green;
+  }
+
+  .radio-text {
+    color: $color-white;
+    font-size: 0.9rem;
+  }
+}
+
+// Botões
+.btn-save {
+  width: 100%;
+  background: $color-green;
+  color: $color-primary-dark;
+  border: none;
+  border-radius: 25px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-password {
+  width: 100%;
+  background: transparent;
+  color: $color-white;
+  border: none;
+  padding: 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 8px;
+
+  &:hover {
+    color: $color-green;
+  }
+}
+
+// ============================================
+// BOTTOM NAVIGATION
+// ============================================
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-card-bg;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid $color-border;
+
+  .nav-item {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: $color-gray;
+    transition: color 0.2s ease;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.active,
+    &:hover {
+      color: $color-green;
+    }
+  }
+}
+
+// ============================================
+// MODAL
+// ============================================
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: $color-card-bg;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 350px;
+  position: relative;
+  border: 1px solid $color-border;
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: $color-gray;
+    cursor: pointer;
+    padding: 4px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+
+  .modal-title {
+    color: $color-white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .modal-input {
+    width: 100%;
+    background: $color-input-bg;
+    border: 1px solid $color-border;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: $color-white;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: $color-green;
+    }
+
+    &::placeholder {
+      color: $color-gray;
+    }
+  }
+
+  .btn-save {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

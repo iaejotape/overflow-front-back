@@ -1,0 +1,155 @@
+<ion-content [fullscreen]="true" [scrollY]="true">
+  <div class="perfil-container">
+
+    <!-- Mensagem de feedback -->
+    <div class="mensagem-feedback sucesso" *ngIf="mensagem?.tipo === 'sucesso'">{{ mensagem?.texto }}</div>
+    <div class="mensagem-feedback erro" *ngIf="mensagem?.tipo === 'erro'">{{ mensagem?.texto }}</div>
+
+    <!-- Conteúdo principal - Layout em duas colunas -->
+    <main class="perfil-content" *ngIf="usuario">
+      
+      <!-- Coluna Esquerda - Avatar e Stats -->
+      <section class="card-avatar">
+        <div class="avatar-wrapper">
+          <img src="assets/img/coruja.svg" alt="Coruja" class="avatar-img">
+        </div>
+        
+        <div class="user-stats">
+          <div class="stat-item">
+            <span class="stat-label">Nome</span>
+            <span class="stat-value">{{ usuario.nome }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Nivel</span>
+            <span class="stat-value">{{ usuario.pontos }}Pts</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Data de Registro</span>
+            <span class="stat-value">{{ usuario.registradoEm }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coluna Direita - Card Formulário -->
+      <section class="card-form">
+        
+        <!-- Nome de Usuário -->
+        <div class="form-group">
+          <label class="form-label">Nome de Usuario</label>
+          <div class="input-box" [class.active]="editando.nomeUsuario">
+            <input type="text" [(ngModel)]="nomeUsuario" [readonly]="!editando.nomeUsuario" class="form-input">
+            <button class="btn-edit" (click)="toggleEditar('nomeUsuario')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sexo -->
+        <div class="form-group">
+          <label class="form-label-center">Sexo</label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" [(ngModel)]="sexo" name="sexo" value="masculino">
+              <span class="radio-circle"></span>
+              <span class="radio-symbol">♂</span>
+              <span class="radio-text">Masculino</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" [(ngModel)]="sexo" name="sexo" value="feminino">
+              <span class="radio-circle"></span>
+              <span class="radio-symbol">♀</span>
+              <span class="radio-text">Feminino</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" [(ngModel)]="sexo" name="sexo" value="outro">
+              <span class="radio-circle"></span>
+              <span class="radio-text">Outros</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- E-mail -->
+        <div class="form-group">
+          <label class="form-label-center">E-mail</label>
+          <div class="input-box" [class.active]="editando.email">
+            <input type="email" [(ngModel)]="email" [readonly]="!editando.email" class="form-input">
+            <button class="btn-edit" (click)="toggleEditar('email')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botões -->
+        <button class="btn-save" (click)="salvarAlteracoes()" [disabled]="carregando">
+          {{ carregando ? 'Salvando...' : 'Salvar alterações' }}
+        </button>
+
+        <button class="btn-password" (click)="abrirModalSenha()">Alterar senha</button>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button class="nav-item" [class.active]="menuAtivo === 'home'" (click)="navegarPara('home')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        </svg>
+      </button>
+      <button class="nav-item" [class.active]="menuAtivo === 'questoes'" (click)="navegarPara('questoes')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C8.5 2 5 5.5 5 10c0 4.5 3 7 5 9.5.5.6 1.2 1 2 1s1.5-.4 2-1c2-2.5 5-5 5-9.5 0-4.5-3.5-8-7-8z"/>
+        </svg>
+      </button>
+      <button class="nav-item" [class.active]="menuAtivo === 'conquistas'" (click)="navegarPara('conquistas')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </svg>
+      </button>
+      <button class="nav-item" [class.active]="menuAtivo === 'stats'" (click)="navegarPara('stats')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 20h16"/><rect x="4" y="12" width="3" height="8"/><rect x="10" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/>
+        </svg>
+      </button>
+      <button class="nav-item" [class.active]="menuAtivo === 'perfil'" (click)="navegarPara('perfil')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal Alterar Senha -->
+  <div class="modal-overlay" *ngIf="mostrarModalSenha" (click)="fecharModalSenha()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="fecharModalSenha()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <h2 class="modal-title">Alterar Senha</h2>
+      <div class="form-group">
+        <label class="form-label">Senha atual</label>
+        <input type="password" class="modal-input" [(ngModel)]="senhaAtual" placeholder="Digite sua senha atual">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nova senha</label>
+        <input type="password" class="modal-input" [(ngModel)]="novaSenha" placeholder="Digite a nova senha">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirmar nova senha</label>
+        <input type="password" class="modal-input" [(ngModel)]="confirmarNovaSenha" placeholder="Confirme a nova senha">
+      </div>
+      <button class="btn-save" (click)="alterarSenha()" [disabled]="carregando">
+        {{ carregando ? 'Alterando...' : 'Alterar senha' }}
+      </button>
+    </div>
+  </div>
+</ion-content>

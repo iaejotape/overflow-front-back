@@ -1,0 +1,225 @@
+<ion-content [fullscreen]="true" [scrollY]="true">
+  <div class="signup-container">
+    <!-- aqui é o fundo com nuvens -->
+    <div class="cloud-background">
+      <div class="background-overlay"></div>
+      <div class="clouds-container">
+        <img src="/assets/img/nuvem.svg" class="cloud c1">
+        <img src="/assets/img/nuvem.svg" class="cloud c2">
+        <img src="/assets/img/nuvem.svg" class="cloud c3">
+        <img src="/assets/img/nuvem.svg" class="cloud c4">
+        <img src="/assets/img/nuvem.svg" class="cloud c5">
+        <img src="/assets/img/nuvem.svg" class="cloud c6">
+        <img src="/assets/img/nuvem.svg" class="cloud c7">
+        <img src="/assets/img/nuvem.svg" class="cloud c8">
+        <img src="/assets/img/nuvem.svg" class="cloud c9">
+        <img src="/assets/img/nuvem.svg" class="cloud c10">
+        <img src="/assets/img/nuvem.svg" class="cloud c11">
+        <img src="/assets/img/nuvem.svg" class="cloud c12">
+      </div>
+    </div>
+
+    <!-- aqui é o conteudo principal do cadastro -->
+    <div class="signup-content">
+      <!-- aqui é a logo -->
+      <div class="logo-section">
+        <img src="/assets/img/overflow-logo.svg" alt="Logo Overflow" class="logo-img">
+        <h2 class="logo-subtitle">Crie sua conta!</h2>
+      </div>
+
+      <!-- aqui é o card de cadastro -->
+      <div class="signup-card">
+        <h2 class="card-title">Criar nova conta<span class="title-dot">.</span></h2>
+
+        <!-- aqui é o formulario -->
+        <form class="signup-form" (ngSubmit)="onSignup($event)">
+          
+          <!-- Mensagem de erro geral -->
+          <div class="error-banner" *ngIf="erro">
+            <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span>{{ erro }}</span>
+          </div>
+
+          <!-- Mensagem de sucesso -->
+          <div class="success-banner" *ngIf="sucesso">
+            <svg class="success-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+            <span>{{ sucesso }}</span>
+          </div>
+
+          <!-- aqui é o campo de nome -->
+          <div class="form-group" [class.has-error]="erros.nome && touched.nome">
+            <label class="form-label">Nome</label>
+            <div class="input-wrapper" [class.input-error]="erros.nome && touched.nome">
+              <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <input
+                type="text"
+                [(ngModel)]="nome"
+                name="nome"
+                placeholder="Digite seu nome"
+                class="form-input"
+                (blur)="onBlur('nome')"
+                (input)="onInput('nome')"
+              />
+            </div>
+            <span class="field-error" *ngIf="erros.nome && touched.nome">{{ erros.nome }}</span>
+          </div>
+
+          <!-- aqui é o campo de username -->
+          <div class="form-group" [class.has-error]="erros.username && touched.username">
+            <label class="form-label">Nome de usuário</label>
+            <div class="input-wrapper" [class.input-error]="erros.username && touched.username">
+              <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/>
+              </svg>
+              <input
+                type="text"
+                [(ngModel)]="username"
+                name="username"
+                placeholder="Digite seu username"
+                class="form-input"
+                (blur)="onBlur('username')"
+                (input)="onInput('username')"
+              />
+            </div>
+            <span class="field-error" *ngIf="erros.username && touched.username">{{ erros.username }}</span>
+            <span class="field-hint" *ngIf="!erros.username && touched.username">Use apenas letras, números e underscore.</span>
+          </div>
+
+          <!-- aqui é o campo de email -->
+          <div class="form-group" [class.has-error]="erros.email && touched.email">
+            <label class="form-label">Email</label>
+            <div class="input-wrapper" [class.input-error]="erros.email && touched.email">
+              <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <input
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Digite seu e-mail"
+                class="form-input"
+                (blur)="onBlur('email')"
+                (input)="onInput('email')"
+              />
+            </div>
+            <span class="field-error" *ngIf="erros.email && touched.email">{{ erros.email }}</span>
+          </div>
+
+          <!-- aqui é o campo de senha -->
+          <div class="form-group" [class.has-error]="erros.senha && touched.senha">
+            <label class="form-label">Senha</label>
+            <div class="input-wrapper" [class.input-error]="erros.senha && touched.senha">
+              <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input
+                type="password"
+                [(ngModel)]="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                class="form-input"
+                (blur)="onBlur('senha')"
+                (input)="onInput('senha')"
+              />
+            </div>
+            <span class="field-error" *ngIf="erros.senha && touched.senha">{{ erros.senha }}</span>
+            <!-- Indicador de força da senha -->
+            <div class="password-strength" *ngIf="senha && touched.senha">
+              <div class="strength-bars">
+                <div class="strength-bar" [class.active]="forcaSenha.nivel >= 1" [style.background-color]="forcaSenha.nivel >= 1 ? forcaSenha.cor : ''"></div>
+                <div class="strength-bar" [class.active]="forcaSenha.nivel >= 2" [style.background-color]="forcaSenha.nivel >= 2 ? forcaSenha.cor : ''"></div>
+                <div class="strength-bar" [class.active]="forcaSenha.nivel >= 3" [style.background-color]="forcaSenha.nivel >= 3 ? forcaSenha.cor : ''"></div>
+                <div class="strength-bar" [class.active]="forcaSenha.nivel >= 4" [style.background-color]="forcaSenha.nivel >= 4 ? forcaSenha.cor : ''"></div>
+              </div>
+              <span class="strength-text" [style.color]="forcaSenha.cor">{{ forcaSenha.texto }}</span>
+            </div>
+          </div>
+
+          <!-- aqui é o campo de confirmar senha -->
+          <div class="form-group" [class.has-error]="erros.confirmarSenha && touched.confirmarSenha">
+            <label class="form-label">Confirmar senha</label>
+            <div class="input-wrapper" [class.input-error]="erros.confirmarSenha && touched.confirmarSenha">
+              <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input
+                type="password"
+                [(ngModel)]="confirmarSenha"
+                name="confirmarSenha"
+                placeholder="Confirme sua senha"
+                class="form-input"
+                (blur)="onBlur('confirmarSenha')"
+                (input)="onInput('confirmarSenha')"
+              />
+            </div>
+            <span class="field-error" *ngIf="erros.confirmarSenha && touched.confirmarSenha">{{ erros.confirmarSenha }}</span>
+          </div>
+
+          <!-- aqui é a escolha do tipo de usuario -->
+          <div class="form-group" [class.has-error]="erros.tipoUsuario && touched.tipoUsuario">
+            <label class="form-label">Tipo de usuário</label>
+            <div class="user-type-group">
+              <label class="type-option" [class.selected]="tipoUsuario === 'estudante'" [class.type-error]="erros.tipoUsuario && touched.tipoUsuario">
+                <input type="radio" [(ngModel)]="tipoUsuario" name="tipoUsuario" value="estudante" class="radio-input" (change)="onTipoUsuarioChange()">
+                <span class="type-icon">
+                    <img src="assets/img/estudante.svg" alt="student icon" class="student-icon">
+                </span>
+                <span class="type-label">Estudante</span>
+              </label>
+              <label class="type-option" [class.selected]="tipoUsuario === 'professor'" [class.type-error]="erros.tipoUsuario && touched.tipoUsuario">
+                <input type="radio" [(ngModel)]="tipoUsuario" name="tipoUsuario" value="professor" class="radio-input" (change)="onTipoUsuarioChange()">
+                <span class="type-icon">
+                    <img src="assets/img/professor.svg" alt="professor icon" class="professor-icon">
+                </span>
+                <span class="type-label">Professor</span>
+              </label>
+            </div>
+            <span class="field-error" *ngIf="erros.tipoUsuario && touched.tipoUsuario">{{ erros.tipoUsuario }}</span>
+          </div>
+
+          <!-- aqui é o checkbox dos termos -->
+          <div class="terms-wrapper" [class.has-error]="erros.aceitaTermos && touched.aceitaTermos">
+            <label class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                [(ngModel)]="aceitaTermos"
+                name="aceitaTermos"
+                class="checkbox-input"
+                (change)="onBlur('aceitaTermos')"
+              />
+              <span class="checkbox-label">
+                Eu aceito os <button type="button" class="link-btn" (click)="openTerms()">Termos e Condições</button>
+              </span>
+            </label>
+            <span class="field-error terms-error" *ngIf="erros.aceitaTermos && touched.aceitaTermos">{{ erros.aceitaTermos }}</span>
+          </div>
+
+          <!-- aqui é o botao de criar conta -->
+          <button type="submit" class="btn-signup">Criar Conta</button>
+        </form>
+
+        <!-- aqui é o link pra login -->
+        <div class="login-link">
+          <span class="login-text">Já tem uma conta? </span>
+          <button type="button" class="login-btn" (click)="navigateToLogin()">
+            Entrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

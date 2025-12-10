@@ -1,0 +1,658 @@
+// ============================================
+// VARIÁVEIS DE CORES - Overflow Theme
+// ============================================
+$color-primary-dark: #0c0f3f;
+$color-cloud: #d8d8d8;
+$color-green: #24c97b;
+$color-purple: #6a3cff;
+$color-white: #ffffff;
+$color-text-dark: #1a1a1a;
+$color-text-gray: #666666;
+$color-border: #e5e5e5;
+$color-discord: #5865f2;
+$color-facebook: #1877f2;
+
+// ============================================
+// CONTAINER PRINCIPAL
+// ============================================
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+// ============================================
+// CLOUD BACKGROUND
+// ============================================
+// --- CONFIGURAÇÃO GERAL ---
+.clouds-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  left: -40%; // Posição inicial fora da tela
+  object-fit: contain;
+  animation: moveRight linear infinite;
+}
+
+// --- AS 12 NUVENS (Espalhadas) ---
+
+// 1. Topo - Rápida
+.c1 { top: 5%; width: 25%; opacity: 0.15; animation-duration: 12s; animation-delay: -2s; }
+
+// 2. Meio Superior - Média
+.c2 { top: 25%; width: 20%; opacity: 0.10; animation-duration: 18s; animation-delay: -8s; }
+
+// 3. Baixo - Lenta
+.c3 { top: 60%; width: 30%; opacity: 0.12; animation-duration: 25s; animation-delay: -15s; }
+
+// 4. Topo Alto - Super Rápida
+.c4 { top: 15%; width: 15%; opacity: 0.08; animation-duration: 10s; animation-delay: -5s; }
+
+// 5. Rodapé - Média
+.c5 { top: 85%; width: 35%; opacity: 0.14; animation-duration: 20s; animation-delay: 0s; }
+
+// 6. Meio - Grande e Lenta
+.c6 { top: 40%; width: 28%; opacity: 0.09; animation-duration: 22s; animation-delay: -10s; }
+
+// --- NOVAS NUVENS (Preenchimento) ---
+
+// 7. Topo Extremo - Pequena
+.c7 { top: 2%; width: 12%; opacity: 0.10; animation-duration: 14s; animation-delay: -12s; }
+
+// 8. Fundo Baixo - Média
+.c8 { top: 75%; width: 22%; opacity: 0.11; animation-duration: 19s; animation-delay: -4s; }
+
+// 9. Centro Exato - Transparente (Fundo)
+.c9 { top: 50%; width: 45%; opacity: 0.05; animation-duration: 28s; animation-delay: -20s; }
+
+// 10. Meio Baixo - Rápida
+.c10 { top: 68%; width: 18%; opacity: 0.13; animation-duration: 11s; animation-delay: -6s; }
+
+// 11. Topo Direito - Média
+.c11 { top: 10%; width: 26%; opacity: 0.12; animation-duration: 16s; animation-delay: -9s; }
+
+// 12. Rodapé Final - Pequena
+.c12 { top: 92%; width: 14%; opacity: 0.15; animation-duration: 13s; animation-delay: -1s; }
+
+
+// --- ANIMAÇÃO ---
+@keyframes moveRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(150vw); }
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: $color-primary-dark;
+}
+
+
+
+// Partículas decorativas
+.particle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.particle-1 {
+  top: 10%;
+  left: 20%;
+  width: 6px;
+  height: 6px;
+  background-color: $color-purple;
+  opacity: 0.6;
+}
+
+.particle-2 {
+  top: 25%;
+  right: 15%;
+  width: 5px;
+  height: 5px;
+  background-color: $color-green;
+  opacity: 0.7;
+}
+
+.particle-3 {
+  bottom: 30%;
+  left: 10%;
+  width: 6px;
+  height: 6px;
+  background-color: $color-purple;
+  opacity: 0.5;
+}
+
+.particle-4 {
+  bottom: 20%;
+  right: 25%;
+  width: 5px;
+  height: 5px;
+  background-color: $color-green;
+  opacity: 0.6;
+}
+
+.particle-5 {
+  top: 60%;
+  left: 30%;
+  width: 4px;
+  height: 4px;
+  background-color: $color-cloud;
+  opacity: 0.8;
+}
+
+.particle-6 {
+  top: 70%;
+  right: 40%;
+  width: 4px;
+  height: 4px;
+  background-color: $color-cloud;
+  opacity: 0.7;
+}
+
+// ============================================
+// CONTEÚDO PRINCIPAL
+// ============================================
+.login-content {
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  z-index: 10;
+}
+
+// ============================================
+// LOGO SECTION
+// ============================================
+.logo-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo-section img {
+  width: 280px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.logo-subtitle {
+  color: rgba($color-white, 0.8);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+// ============================================
+// LOGIN CARD
+// ============================================
+.login-card {
+  background-color: $color-white;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  padding: 24px 20px;
+
+  @media (min-width: 375px) {
+    padding: 28px 24px;
+  }
+}
+
+.card-title {
+  text-align: center;
+  color: $color-primary-dark;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+
+  @media (min-width: 375px) {
+    font-size: 1.35rem;
+    margin-bottom: 24px;
+  }
+}
+
+// ============================================
+// FORMULÁRIO
+// ============================================
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @media (min-width: 375px) {
+    gap: 16px;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  &.has-error {
+    .form-label {
+      color: #dc3545;
+    }
+  }
+}
+
+// ============================================
+// ESTILOS DE VALIDAÇÃO E ERROS
+// ============================================
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  color: #dc3545;
+  font-size: 0.9rem;
+
+  .error-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.input-error {
+  border-color: #dc3545 !important;
+
+  .input-icon {
+    color: #dc3545;
+  }
+}
+
+.field-error {
+  display: block;
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.form-label {
+  color: $color-text-gray;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+
+  @media (min-width: 375px) {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  color: $color-text-gray;
+  pointer-events: none;
+
+  @media (min-width: 375px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 2px solid $color-border;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: $color-text-dark;
+  background-color: $color-white;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+
+  @media (min-width: 375px) {
+    padding: 14px 16px 14px 46px;
+    font-size: 1rem;
+  }
+
+  &::placeholder {
+    color: rgba($color-text-gray, 0.7);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-purple;
+  }
+}
+
+// ============================================
+// OPÇÕES DO FORMULÁRIO
+// ============================================
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $color-border;
+  border-radius: 6px;
+  background-color: $color-white;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+
+  @media (min-width: 375px) {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+  }
+
+  &:checked {
+    background-color: $color-purple;
+    border-color: $color-purple;
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 9px;
+    border: solid $color-white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+
+    @media (min-width: 375px) {
+      width: 6px;
+      height: 10px;
+    }
+  }
+}
+
+.checkbox-label {
+  color: $color-text-gray;
+  font-size: 0.8rem;
+
+  @media (min-width: 375px) {
+    font-size: 0.85rem;
+  }
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: $color-purple;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  transition: text-decoration 0.2s ease;
+
+  @media (min-width: 375px) {
+    font-size: 0.85rem;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ============================================
+// BOTÃO LOGIN
+// ============================================
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background-color: $color-green;
+  color: $color-white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 4px;
+
+  @media (min-width: 375px) {
+    padding: 16px;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// ============================================
+// DIVIDER
+// ============================================
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+
+  @media (min-width: 375px) {
+    gap: 16px;
+    margin: 24px 0;
+  }
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: $color-border;
+}
+
+.divider-text {
+  color: $color-text-gray;
+  font-size: 0.8rem;
+  white-space: nowrap;
+
+  @media (min-width: 375px) {
+    font-size: 0.85rem;
+  }
+}
+
+// ============================================
+// BOTÕES SOCIAIS
+// ============================================
+.social-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @media (min-width: 375px) {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 2px solid $color-border;
+  border-radius: 12px;
+  background-color: $color-white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  @media (min-width: 375px) {
+    padding: 14px;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $color-text-gray;
+  }
+
+  &.google svg {
+    color: #4285F4;
+  }
+
+  &.discord svg {
+    color: $color-discord;
+  }
+
+  &.facebook svg {
+    color: $color-facebook;
+  }
+
+  &:hover {
+    background-color: rgba($color-border, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// ============================================
+// LINK PARA CADASTRO
+// ============================================
+.signup-link {
+  text-align: center;
+}
+
+.signup-text {
+  color: $color-text-gray;
+  font-size: 0.85rem;
+
+  @media (min-width: 375px) {
+    font-size: 0.9rem;
+  }
+}
+
+.signup-btn {
+  background: none;
+  border: none;
+  color: $color-purple;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: text-decoration 0.2s ease;
+
+  @media (min-width: 375px) {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ============================================
+// FOOTER SOCIAL
+// ============================================
+.footer-social {
+  text-align: center;
+  margin-top: 24px;
+
+  @media (min-width: 375px) {
+    margin-top: 28px;
+  }
+}
+
+.footer-title {
+  color: rgba($color-white, 0.8);
+  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+
+  @media (min-width: 375px) {
+    font-size: 0.9rem;
+  }
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  @media (min-width: 375px) {
+    gap: 16px;
+  }
+}
+
+.footer-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba($color-white, 0.1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  @media (min-width: 375px) {
+    width: 44px;
+    height: 44px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $color-white;
+    fill: $color-white;
+
+    @media (min-width: 375px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background-color: rgba($color-white, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// ============================================
+// IONIC OVERRIDES
+// ============================================
+ion-content {
+  --background: transparent;
+}

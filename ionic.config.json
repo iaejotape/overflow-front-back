@@ -1,0 +1,16 @@
+{
+  "name": "app-overflow",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone",
+  "server": {
+    "proxy": {
+      "/api": {
+        "target": "https://auth-overflows.onrender.com",
+        "secure": true,
+        "changeOrigin": true
+      }
+    }
+  }
+}
